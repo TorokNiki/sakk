@@ -75,9 +75,20 @@ public class SakkTabla {
         if (isFigura(sx, sy)) {
             if (isKivalasztottFigura(sx, sy, 11) || isKivalasztottFigura(sx, sy, 21)) {
                 return isErvenyesGyalogLepes(sx, sy, dx, dy);
+            } else if (isKivalasztottFigura(sx, sy, 12) || isKivalasztottFigura(sx, sy, 22)) {
+                return isErvenyesBastyaLepes(sx, sy, dx, dy);
+            } else if (isKivalasztottFigura(sx, sy, 13) || isKivalasztottFigura(sx, sy, 23)) {
+                return isErvenyesHuszarLepes(sx, sy, dx, dy);
+            } else if (isKivalasztottFigura(sx, sy, 14) || isKivalasztottFigura(sx, sy, 24)) {
+                return isErvenyesFutoLepes(sx, sy, dx, dy);
+            } else if (isKivalasztottFigura(sx, sy, 15) || isKivalasztottFigura(sx, sy, 25)) {
+                return isErvenyesKiralyLepes(sx, sy, dx, dy);
+            } else if (isKivalasztottFigura(sx, sy, 16) || isKivalasztottFigura(sx, sy, 26)) {
+                return isErvenyesVezerLepes(sx, sy, dx, dy);
+            } else {
+                return false;
             }
-        }
-        return true;
+        } else return false;
     }
 
     public boolean isMatt() {
@@ -106,23 +117,88 @@ public class SakkTabla {
     }
 
     public boolean isErvenyesBastyaLepes(int sx, int sy, int dx, int dy) {
-        return true;
+        boolean helyesVilagosLepesE = false;
+        boolean helyesSotetLepesE = false;
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesVilagosLepesE = kezdoLepes || lepes || utes;
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesSotetLepesE = kezdoLepes || lepes || utes;
+        }
+        return helyesSotetLepesE || helyesVilagosLepesE;
     }
 
     public boolean isErvenyesHuszarLepes(int sx, int sy, int dx, int dy) {
-        return true;
+        boolean helyesVilagosLepesE = false;
+        boolean helyesSotetLepesE = false;
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesVilagosLepesE = kezdoLepes || lepes || utes;
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesSotetLepesE = kezdoLepes || lepes || utes;
+        }
+        return helyesSotetLepesE || helyesVilagosLepesE;
     }
 
     public boolean isErvenyesFutoLepes(int sx, int sy, int dx, int dy) {
-        return true;
+        boolean helyesVilagosLepesE = false;
+        boolean helyesSotetLepesE = false;
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesVilagosLepesE = kezdoLepes || lepes || utes;
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesSotetLepesE = kezdoLepes || lepes || utes;
+        }
+        return helyesSotetLepesE || helyesVilagosLepesE;
     }
 
     public boolean isErvenyesVezerLepes(int sx, int sy, int dx, int dy) {
-        return true;
+        boolean helyesVilagosLepesE = false;
+        boolean helyesSotetLepesE = false;
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesVilagosLepesE = kezdoLepes || lepes || utes;
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesSotetLepesE = kezdoLepes || lepes || utes;
+        }
+        return helyesSotetLepesE || helyesVilagosLepesE;
     }
 
     public boolean isErvenyesKiralyLepes(int sx, int sy, int dx, int dy) {
-        return true;
+        boolean helyesVilagosLepesE = false;
+        boolean helyesSotetLepesE = false;
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesVilagosLepesE = kezdoLepes || lepes || utes;
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = true;
+            boolean lepes = true;
+            boolean utes = true;
+            helyesSotetLepesE = kezdoLepes || lepes || utes;
+        }
+        return helyesSotetLepesE || helyesVilagosLepesE;
     }
 
     @Override
