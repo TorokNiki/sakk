@@ -120,17 +120,16 @@ public class SakkTabla {
         boolean helyesVilagosLepesE = false;
         boolean helyesSotetLepesE = false;
 
-        if(isVilagosFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 7 && sy==0 )||(sx==0 && sy==0) &&(sx == dx || sy == dy) );
-            boolean lepes = sx == dx || sy == dy && isUresHely(dx,dy);
-            boolean utes =  sx == dx || sy == dy && isSotetFigura(dx,dy);
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 7 && sy == 0) || (sx == 0 && sy == 0) && (sx == dx || sy == dy));
+            boolean lepes = sx == dx || sy == dy && isUresHely(dx, dy);
+            boolean utes = sx == dx || sy == dy && isSotetFigura(dx, dy);
 
             helyesVilagosLepesE = kezdoLepes || lepes || utes;
-        }
-        else if(isSotetFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 7 && sy==7 )||(sx==0 && sy==7) &&(sx == dx || sy == dy));
-            boolean lepes = sx == dx || sy == dy && isUresHely(dx,dy);
-            boolean utes =  sx == dx || sy == dy && isVilagosFigura(dx,dy);
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 7 && sy == 7) || (sx == 0 && sy == 7) && (sx == dx || sy == dy));
+            boolean lepes = sx == dx || sy == dy && isUresHely(dx, dy);
+            boolean utes = sx == dx || sy == dy && isVilagosFigura(dx, dy);
 
             helyesSotetLepesE = kezdoLepes || lepes || utes;
         }
@@ -141,17 +140,16 @@ public class SakkTabla {
         boolean helyesVilagosLepesE = false;
         boolean helyesSotetLepesE = false;
 
-        if(isVilagosFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 6 && sy==0 )||(sx==1 && sy==0) &&((Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2))));
-            boolean lepes = (Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2)) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2))&& isSotetFigura(dx,dy);
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 6 && sy == 0) || (sx == 1 && sy == 0) && ((Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2))));
+            boolean lepes = (Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2)) && isSotetFigura(dx, dy);
 
             helyesVilagosLepesE = kezdoLepes || lepes || utes;
-        }
-        else if(isSotetFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 6 && sy==7 )||(sx==1 && sy==7) &&((Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2))));
-            boolean lepes = (Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2))&& isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==2 && Math.abs(sy-dy)==1)||((Math.abs(sx-dx)==1 && Math.abs(sy-dy)==2))&& isVilagosFigura(dx,dy);
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 6 && sy == 7) || (sx == 1 && sy == 7) && ((Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2))));
+            boolean lepes = (Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == 2 && Math.abs(sy - dy) == 1) || ((Math.abs(sx - dx) == 1 && Math.abs(sy - dy) == 2)) && isVilagosFigura(dx, dy);
 
             helyesSotetLepesE = kezdoLepes || lepes || utes;
         }
@@ -162,17 +160,16 @@ public class SakkTabla {
         boolean helyesVilagosLepesE = false;
         boolean helyesSotetLepesE = false;
 
-        if(isVilagosFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 5 && sy==0 )||(sx==2 && sy==0) &&(Math.abs(sx-dx)==Math.abs(sy-dy)));
-            boolean lepes = (Math.abs(sx-dx)==Math.abs(sy-dy)) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==Math.abs(sy-dy))&& isSotetFigura(dx,dy);
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 5 && sy == 0) || (sx == 2 && sy == 0) && (Math.abs(sx - dx) == Math.abs(sy - dy)));
+            boolean lepes = (Math.abs(sx - dx) == Math.abs(sy - dy)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == Math.abs(sy - dy)) && isSotetFigura(dx, dy);
 
             helyesVilagosLepesE = kezdoLepes || lepes || utes;
-        }
-        else if(isSotetFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 5 && sy==7 )||(sx==2 && sy==7) &&(Math.abs(sx-dx)==Math.abs(sy-dy)));
-            boolean lepes = (Math.abs(sx-dx)==Math.abs(sy-dy)) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==Math.abs(sy-dy))&& isVilagosFigura(dx,dy);
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 5 && sy == 7) || (sx == 2 && sy == 7) && (Math.abs(sx - dx) == Math.abs(sy - dy)));
+            boolean lepes = (Math.abs(sx - dx) == Math.abs(sy - dy)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == Math.abs(sy - dy)) && isVilagosFigura(dx, dy);
 
             helyesSotetLepesE = kezdoLepes || lepes || utes;
         }
@@ -183,17 +180,16 @@ public class SakkTabla {
         boolean helyesVilagosLepesE = false;
         boolean helyesSotetLepesE = false;
 
-        if(isVilagosFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 4 && sy==0 ) &&(Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy)));
-            boolean lepes = (Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy)) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy))&& isSotetFigura(dx,dy);
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 4 && sy == 0) && (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)));
+            boolean lepes = (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)) && isSotetFigura(dx, dy);
 
             helyesVilagosLepesE = kezdoLepes || lepes || utes;
-        }
-        else if(isSotetFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 4 && sy==7 ) &&(Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy)));
-            boolean lepes = (Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy)) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==Math.abs(sy-dy)||(sx == dx || sy == dy))&& isVilagosFigura(dx,dy);
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 4 && sy == 7) && (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)));
+            boolean lepes = (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == Math.abs(sy - dy) || (sx == dx || sy == dy)) && isVilagosFigura(dx, dy);
 
             helyesSotetLepesE = kezdoLepes || lepes || utes;
         }
@@ -204,17 +200,16 @@ public class SakkTabla {
         boolean helyesVilagosLepesE = false;
         boolean helyesSotetLepesE = false;
 
-        if(isVilagosFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 3 && sy==0 ) &&(Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1));
-            boolean lepes = (Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1)&& isSotetFigura(dx,dy);
+        if (isVilagosFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 3 && sy == 0) && (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1));
+            boolean lepes = (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1) && isSotetFigura(dx, dy);
 
             helyesVilagosLepesE = kezdoLepes || lepes || utes;
-        }
-        else if(isSotetFigura(sx,sy)){
-            boolean kezdoLepes = ((sx == 3 && sy==7 ) &&(Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1));
-            boolean lepes = (Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1) && isUresHely(dx,dy);
-            boolean utes =  (Math.abs(sx-dx)==1 || Math.abs(sy-dy)==1)&& isVilagosFigura(dx,dy);
+        } else if (isSotetFigura(sx, sy)) {
+            boolean kezdoLepes = ((sx == 3 && sy == 7) && (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1));
+            boolean lepes = (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1) && isUresHely(dx, dy);
+            boolean utes = (Math.abs(sx - dx) == 1 || Math.abs(sy - dy) == 1) && isVilagosFigura(dx, dy);
 
             helyesSotetLepesE = kezdoLepes || lepes || utes;
         }

@@ -28,10 +28,11 @@ public class Mezo extends JButton {
         return ertek;
     }
 
-    public void setErtek(int ujErtek){
-        this.ertek=ujErtek;
+    public void setErtek(int ujErtek) {
+        this.ertek = ujErtek;
         this.frissit();
     }
+
     public void frissit() {
         if ((this.x + this.y) % 2 == 0) {
             this.setBackground(Color.decode("#FFFFFF"));
