@@ -15,6 +15,23 @@ public class Mezo extends JButton {
         this.frissit();
     }
 
+
+    public int getPozicioX() {
+        return x;
+    }
+
+    public int getPozicioY() {
+        return y;
+    }
+
+    public int getErtek() {
+        return ertek;
+    }
+
+    public void setErtek(int ujErtek){
+        this.ertek=ujErtek;
+        this.frissit();
+    }
     public void frissit() {
         if ((this.x + this.y) % 2 == 0) {
             this.setBackground(Color.decode("#FFFFFF"));
