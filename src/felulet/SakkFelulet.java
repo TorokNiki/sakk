@@ -4,8 +4,10 @@ import logika.SakkTabla;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -35,10 +37,10 @@ public class SakkFelulet extends JFrame {
         TimerTick();
     }
 
-    private void initComponents() {
+    public void initComponents() {
         this.setTitle("Sakk 1.0");
 //    this.setUndecorated(true);
-        this.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+       // this.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         int hight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         this.setSize(width, hight);
@@ -49,10 +51,23 @@ public class SakkFelulet extends JFrame {
         this.foAblak.setLayout(new BorderLayout(10, 10));
 
         menuBar = new JMenuBar();
-        menu = new JMenu();
-        mentes = new JMenuItem();
-        betoltes = new JMenuItem();
-        ujJatek = new JMenuItem();
+        menu = new JMenu("Opciók");
+        mentes = new JMenuItem(new AbstractAction("Játék mentése") {
+            public void actionPerformed(ActionEvent e) {
+                jatekMentes();
+            }
+        });
+        betoltes = new JMenuItem("Játék betőltése");
+        ujJatek = new JMenuItem(new AbstractAction("Játék újraindítása"){
+            public void actionPerformed(ActionEvent e) {
+                tabla = new SakkTabla();
+                sakkTablaMegjelenit();
+                lepesekListaModel.clear();
+                lepo.setText("Fehér");
+                stopperInditasa = new Date().getTime();
+                TimerTick();
+            }
+        });
         menu.add(mentes);
         menu.add(betoltes);
         menu.add(ujJatek);
@@ -66,13 +81,13 @@ public class SakkFelulet extends JFrame {
         this.foAblak.add(BorderLayout.CENTER, this.pnlJatekTabla);
 
         this.feherPont = new JLabel();
-        this.feherPont.setText("Fehér: 16");
+        this.feherPont.setText("Fehér: " + tabla.getSotetFigurakSzama());
         this.feherPont.setBorder(BorderFactory.createLineBorder(Color.black));
         this.feherPont.setPreferredSize(new Dimension(100, 50));
         this.feherPont.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 
         this.feketePont = new JLabel();
-        this.feketePont.setText("Fekete: 16");
+        this.feketePont.setText("Fekete: " + tabla.getVilagosFigurakSzama());
         this.feketePont.setBorder(BorderFactory.createLineBorder(Color.black));
         this.feketePont.setPreferredSize(new Dimension(100, 50));
         this.feketePont.setHorizontalAlignment((int) CENTER_ALIGNMENT);
@@ -116,7 +131,7 @@ public class SakkFelulet extends JFrame {
         this.setVisible(true);
     }
 
-    private void sakkTablaMegjelenit() {
+    public void sakkTablaMegjelenit() {
         this.pnlJatekTabla.removeAll();
         this.pnlJatekTabla.add(new JLabel());
         for (int i = 0; i < 8; i++) {
@@ -187,10 +202,30 @@ public class SakkFelulet extends JFrame {
             this.kezdoMezo.setErtek(this.tabla.getErtek(sx, sy));
             this.erkezesiMezo.setErtek(this.tabla.getErtek(dx, dy));
             this.lepesekListaModel.addElement(getBabu(erkezesiMezo.getErtek())+" "+getPozicio(kezdoMezo.getPozicioX(), kezdoMezo.getPozicioY())+"-"+getPozicio(erkezesiMezo.getPozicioX(),erkezesiMezo.getPozicioY()));
+            this.lepo.setText(getSzin(erkezesiMezo.getErtek()));
             this.kezdoMezo = null;
             this.erkezesiMezo = null;
 
         }
+    }
+    public String getSzin(int ertek){
+        switch (ertek) {
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                return "Fekete";
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+                return "Fehér";
+        }
+        return "";
     }
     public String getPozicio(int x, int y){
         String pozicio="";
@@ -251,29 +286,29 @@ public class SakkFelulet extends JFrame {
     public String getBabu(int ertek){
         switch (ertek) {
             case 11:
-                return "gyalog-feher";
+                return "gyalog-fehér";
             case 12:
-                return "bastya-feher";
+                return "bástya-fehér";
             case 13:
-                return "huszar-feher";
+                return "huszár-fehér";
             case 14:
-                return "futo-feher";
+                return "futó-fehér";
             case 15:
-                return "kiraly-feher";
+                return "király-fehér";
             case 16:
-                return "vezer-feher";
+                return "vezér-fehér";
             case 21:
                 return "gyalog-fekete";
             case 22:
-                return "bastya-fekete";
+                return "bástya-fekete";
             case 23:
-                return "huszar-fekete";
+                return "huszár-fekete";
             case 24:
-                return "futo-fekete";
+                return "futó-fekete";
             case 25:
-                return "kiraly-fekete";
+                return "király-fekete";
             case 26:
-                return "vezer-fekete";
+                return "vezér-fekete";
         }
         return "";
     }
@@ -291,4 +326,23 @@ public class SakkFelulet extends JFrame {
             }
         }, 0, 100);
     }
+    private void jatekMentes(){
+        try {
+            FileWriter fw = new FileWriter("mentett.txt");
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+
+                    //TODO: Meg kell hívni a sakktáblát (this.tabla) a SakkTabla class-ból
+                    fw.write(this.tabla.getErtek(i,j)+" ");
+                }
+                fw.write(";");
+            }
+            fw.close();
+        } catch (Exception e){
+            System.out.println("Hiba: " + e);
+        }
+        System.out.println("Mentett");
+    }
+
 }
