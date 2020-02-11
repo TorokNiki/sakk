@@ -139,19 +139,22 @@ public class SakkFelulet extends JFrame {
                     @Override
                     public void mouseClicked(MouseEvent mouseEvent) {
                         mezoKattintas(mouseEvent);
-                        m.setBackground(Color.gray);
 
                     }
 
 
                     @Override
                     public void mouseEntered(MouseEvent mouseEvent) {
-                        m.setBackground(Color.lightGray);
+                        if(!m.getBackground().equals(Color.GRAY)){
+                            m.setBackground(Color.lightGray);
+                        }
                     }
 
                     @Override
                     public void mouseExited(MouseEvent mouseEvent) {
-                        m.frissit();
+                        if(!m.getBackground().equals(Color.GRAY)){
+                            m.frissit();
+                        }
                     }
                 });
                 this.pnlJatekTabla.add(m);
@@ -167,6 +170,7 @@ public class SakkFelulet extends JFrame {
 
         if (kezdoMezo == null && aktualisMezo.getErtek() != 0) {
             kezdoMezo = aktualisMezo;
+            ((Mezo) me.getSource()).setBackground(Color.GRAY);
         } else if (kezdoMezo != null && erkezesiMezo == null && aktualisMezo != kezdoMezo) {
             erkezesiMezo = aktualisMezo;
         }
