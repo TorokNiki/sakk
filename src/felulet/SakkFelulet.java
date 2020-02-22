@@ -26,6 +26,8 @@ public class SakkFelulet extends JFrame {
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem mentes, betoltes, ujJatek;
+    private int Feher ;
+    private int Fekete;
 
     public SakkFelulet() {
 
@@ -205,6 +207,33 @@ public class SakkFelulet extends JFrame {
             this.kezdoMezo = null;
             this.erkezesiMezo = null;
 
+        }
+    }
+    public void mattEllenorzes(int dx, int dy){
+        if( this.tabla.isMatt(dx,dy)){
+
+            if(this.lepo.getText().equals("Feher")){
+                this.tabla.topListaMentes(this.lepo.getText(),Feher);
+            }
+            else {
+                this.tabla.topListaMentes(this.lepo.getText(),Fekete);
+            }
+
+            tabla = new SakkTabla();
+            sakkTablaMegjelenit();
+            lepesekListaModel.clear();
+            lepo.setText("Fehér");
+            stopperInditasa = new Date().getTime();
+            TimerTick();
+        }
+    }
+
+    public void pontszam(String szin){
+        if(szin.equals("Feher")){
+            this.Feher++;
+        }
+        else {
+            this.Fekete++;
         }
     }
 

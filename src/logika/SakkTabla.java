@@ -1,5 +1,9 @@
 package logika;
 
+import adatazis.TopListaKezelo;
+
+import java.sql.SQLException;
+
 public class SakkTabla {
     private int[][] tabla;
 
@@ -58,6 +62,19 @@ public class SakkTabla {
         }
         return db;
     }
+    public void topListaMentes(String jatekosNev, int pontszam) {
+        try {
+            TopListaKezelo tlk = new TopListaKezelo();
+            if (jatekosNev != null) {
+                tlk.insertTopLista(jatekosNev, pontszam);
+            } else {
+                tlk.insertTopLista("névtelen játékos", pontszam);
+            }
+        } catch (SQLException var4) {
+            System.err.println(var4.getMessage());
+        }
+
+    }
 
     public int getVilagosFigurakSzama() {
         return getFigurakSzama(11, 16);
@@ -91,8 +108,12 @@ public class SakkTabla {
         } else return false;
     }
 
-    public boolean isMatt() {
-        return true;
+    public boolean isMatt(int dx,int dy) {
+        boolean matt = false;
+        if(getErtek(dx,dy)==15||getErtek(dx,dy)==25){
+            matt=true;
+        }
+        return matt;
     }
 
     public boolean isSakk() {
