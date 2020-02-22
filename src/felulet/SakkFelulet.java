@@ -1,14 +1,19 @@
 package felulet;
 
+import adatazis.TopLista;
+import adatazis.TopListaKezelo;
 import logika.SakkTabla;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileWriter;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,8 +29,8 @@ public class SakkFelulet extends JFrame {
     private JLabel lblStopper;
     private java.util.Timer tmr;
     private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem mentes, betoltes, ujJatek;
+    private JMenu menu, file;
+    private JMenuItem mentes, betoltes, ujJatek, toplista, kilepes;
     private int Feher ;
     private int Fekete;
 
@@ -52,6 +57,12 @@ public class SakkFelulet extends JFrame {
         this.foAblak.setLayout(new BorderLayout(10, 10));
 
         menuBar = new JMenuBar();
+        file= new JMenu("Fájl");
+        toplista= new JMenuItem("Toplista");
+        kilepes = new JMenuItem("Kilépés");
+        file.add(this.toplista);
+        this.file.addSeparator();
+        file.add(this.kilepes);
         menu = new JMenu("Opciók");
         mentes = new JMenuItem(new AbstractAction("Játék mentése") {
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +83,7 @@ public class SakkFelulet extends JFrame {
         menu.add(mentes);
         menu.add(betoltes);
         menu.add(ujJatek);
+        menuBar.add(file);
         menuBar.add(menu);
 
         this.foAblak.add(BorderLayout.NORTH, menuBar);
@@ -127,6 +139,20 @@ public class SakkFelulet extends JFrame {
 
         this.foAblak.add(BorderLayout.EAST, this.pnlOldalso);
 
+        this.toplista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                JOptionPane.showMessageDialog(null,getTopLista("toplista.txt",10), "Top 10",JOptionPane.NO_OPTION);
+            }
+        });
+        this.kilepes.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                dispose();
+                System.exit(0);
+            }
+        });
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -180,6 +206,7 @@ public class SakkFelulet extends JFrame {
         this.repaint();
 
     }
+
 
     private void mezoKattintas(MouseEvent me) {
         Mezo aktualisMezo = (Mezo) me.getSource();
@@ -235,6 +262,25 @@ public class SakkFelulet extends JFrame {
         else {
             this.Fekete++;
         }
+    }
+    public String getTopLista(String fajlNev, int n){
+        List<TopLista> topLista;
+
+        String s = "";
+        try {
+            TopListaKezelo tlk = new TopListaKezelo();
+            topLista = tlk.getTopLista();
+
+            int db = Math.min(topLista.size() , n);
+            for (int i = 0; i < db; i++) {
+                s += String.format("%d. %s\n\r",i+1, topLista.get(i));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return s;
     }
 
     public String getSzin(int ertek) {
